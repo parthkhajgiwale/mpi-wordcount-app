@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Word Count App</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Upload a Text, PDF, or Word File</h2>
+    <form action="/process" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".txt,.pdf,.docx" required>
+      <button type="submit">Count Words</button>
+    </form>
+  </div>
+</body>
+</html>
