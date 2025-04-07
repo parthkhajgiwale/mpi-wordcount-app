@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Result</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Word Count Result</h2>
+    <p><strong>Word Count (MPI):</strong> {{ result.mpi_count }}</p>
+    <p><strong>Word Count (Normal):</strong> {{ result.normal_count }}</p>
+    <p><strong>MPI Time:</strong> {{ result.mpi_time }} seconds</p>
+    <p><strong>Normal Time:</strong> {{ result.normal_time }} seconds</p>
+
+    <canvas id="timeChart" width="400" height="200"></canvas>
+
+    <a href="/">Back</a>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('timeChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Normal', 'MPI'],
+        datasets: [{
+          label: 'Execution Time (seconds)',
+          data: [{{ result.normal_time }}, {{ result.mpi_time }}],
+          backgroundColor: ['#007BFF', '#28a745']
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
